@@ -123,13 +123,15 @@ namespace WindowsFormsApp1 //ToDo Dzailanie na enterze
             if (CzyDobraOdpowiedz())
             {
                 poprawnoscLabel.Text = "Dobrze";
-                pictureBox.Image = Image.FromFile("tick-512.png");
+                pictureBox.ImageLocation = "tic-512.png";
             }
             else
             {
                 poprawnoscLabel.Text = "Zle";
-                pictureBox.Image = Image.FromFile("cross.png");
+                pictureBox.ImageLocation = "cross.png";
             }
+
+            pictureBox.Visible = true;
         }
 
         private void button1_Click(object sender, EventArgs e)
