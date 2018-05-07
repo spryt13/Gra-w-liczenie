@@ -38,6 +38,8 @@
             this.sprawdzenieButton = new System.Windows.Forms.Button();
             this.poprawnoscLabel = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.pictureBox = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
             this.SuspendLayout();
             // 
             // losujDzialanieButton
@@ -131,11 +133,25 @@
             this.label1.TabIndex = 8;
             this.label1.Text = "Policz ile to:";
             // 
+            // pictureBox
+            // 
+            this.pictureBox.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox.BackgroundImage")));
+            this.pictureBox.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox.Image")));
+            this.pictureBox.InitialImage = ((System.Drawing.Image)(resources.GetObject("pictureBox.InitialImage")));
+            this.pictureBox.Location = new System.Drawing.Point(163, 165);
+            this.pictureBox.Name = "pictureBox";
+            this.pictureBox.Size = new System.Drawing.Size(61, 51);
+            this.pictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox.TabIndex = 9;
+            this.pictureBox.TabStop = false;
+            this.pictureBox.Visible = false;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(409, 286);
+            this.Controls.Add(this.pictureBox);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.poprawnoscLabel);
             this.Controls.Add(this.sprawdzenieButton);
@@ -150,6 +166,7 @@
             this.MaximizeBox = false;
             this.Name = "Form1";
             this.Text = "Sprawdź się!";
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -166,6 +183,7 @@
         private System.Windows.Forms.Button sprawdzenieButton;
         private System.Windows.Forms.Label poprawnoscLabel;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.PictureBox pictureBox;
     }
 }
 

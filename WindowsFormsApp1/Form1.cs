@@ -104,7 +104,16 @@ namespace WindowsFormsApp1 //ToDo Dzailanie na enterze
             int b = Convert.ToInt32(liczba2Label.Text);
 
             int wynikDzialania = Policz(a, StringToZnak(znakLabel.Text), b);
-            int liczbaWpisana = Convert.ToInt32(userInputTexBox.Text);
+            int liczbaWpisana;
+
+            try
+            {
+                liczbaWpisana = Convert.ToInt32(userInputTexBox.Text);
+            }
+            catch (Exception exception)
+            {
+                liczbaWpisana = 0;
+            }
 
             return wynikDzialania == liczbaWpisana;
         }
@@ -114,10 +123,12 @@ namespace WindowsFormsApp1 //ToDo Dzailanie na enterze
             if (CzyDobraOdpowiedz())
             {
                 poprawnoscLabel.Text = "Dobrze";
+                pictureBox.Image = Image.FromFile("tick-512.png");
             }
             else
             {
                 poprawnoscLabel.Text = "Zle";
+                pictureBox.Image = Image.FromFile("cross.png");
             }
         }
 
