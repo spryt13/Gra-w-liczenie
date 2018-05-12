@@ -8,11 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-//ToDo Zrobić by obrazek miał ścieżkę względną. Najlepiej jako resource
 //ToDo Wczytywanie działań z pliku
 //ToDo Klasa Dzialanie
 //ToDo Działania mają mieć stopień trudności
 //ToDo Dynamiczne dobieranie równań do tego jak idzie graczowi
+//ToDo Sprawdzanie poprawnosci pliku z danymi (Konstruktor Dzialan moglby rzucac wyjatkami)
 namespace WindowsFormsApp1 //Todo Zrobić obiektowo
 {
     public partial class Form1 : Form
@@ -117,7 +117,7 @@ namespace WindowsFormsApp1 //Todo Zrobić obiektowo
             }
             catch (Exception exception)
             {
-                liczbaWpisana = 0;
+                return false;
             }
 
             return wynikDzialania == liczbaWpisana;
@@ -128,20 +128,29 @@ namespace WindowsFormsApp1 //Todo Zrobić obiektowo
             if (CzyDobraOdpowiedz())
             {
                 poprawnoscLabel.Text = "Dobrze";
-                pictureBox.ImageLocation = "tic-512.png";
+                pictureBox.Image = Properties.Resources.tick;
+                pictureBox.Visible = true;
             }
             else
             {
                 poprawnoscLabel.Text = "Zle";
-                pictureBox.ImageLocation = "cross.png";
+                pictureBox.Image = Properties.Resources.cross;
+                pictureBox.Visible = true;
             }
 
             pictureBox.Visible = true;
         }
 
+        private void WyczyscStareRownanie()
+        {
+            userInputTexBox.Text = "";
+            pictureBox.Visible = false;
+        }
+
         private void button1_Click(object sender, EventArgs e)
         {
             UtworzLosoweRownanie();
+            WyczyscStareRownanie();
         }
 
         private void button2_Click(object sender, EventArgs e)

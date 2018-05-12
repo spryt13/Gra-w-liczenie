@@ -136,8 +136,6 @@
             // 
             // pictureBox
             // 
-            this.pictureBox.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox.BackgroundImage")));
-            this.pictureBox.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox.Image")));
             this.pictureBox.InitialImage = ((System.Drawing.Image)(resources.GetObject("pictureBox.InitialImage")));
             this.pictureBox.Location = new System.Drawing.Point(163, 165);
             this.pictureBox.Name = "pictureBox";
