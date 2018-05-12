@@ -8,11 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+//ToDo Zrobić by obrazek miał ścieżkę względną. Najlepiej jako resource
 //ToDo Wczytywanie działań z pliku
 //ToDo Klasa Dzialanie
 //ToDo Działania mają mieć stopień trudności
 //ToDo Dynamiczne dobieranie równań do tego jak idzie graczowi
-//ToDo Sprawdzanie poprawnosci pliku z danymi (Konstruktor Dzialan moglby rzucac wyjatkami)
 namespace WindowsFormsApp1 //Todo Zrobić obiektowo
 {
     public partial class Form1 : Form
