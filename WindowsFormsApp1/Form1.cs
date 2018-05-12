@@ -8,7 +8,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace WindowsFormsApp1 //ToDo Dzailanie na enterze
+//ToDo Zrobić by obrazek miał ścieżkę względną. Najlepiej jako resource
+//ToDo Wczytywanie działań z pliku
+//ToDo Klasa Dzialanie
+//ToDo Działania mają mieć stopień trudności
+//ToDo Dynamiczne dobieranie równań do tego jak idzie graczowi
+namespace WindowsFormsApp1 //Todo Zrobić obiektowo
 {
     public partial class Form1 : Form
     {
