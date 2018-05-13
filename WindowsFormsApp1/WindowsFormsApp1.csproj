@@ -90,7 +90,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="dane.txt" />
-    <Content Include="dane.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
