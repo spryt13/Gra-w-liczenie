@@ -27,6 +27,7 @@ namespace WindowsFormsApp1 //Todo Zrobić obiektowo
         {
             InitializeComponent();
 
+            WczytajRownania(@"../../dane.txt"); //Dane sa dwa foldery wyrzej
             //WczytajRownaniaXML("dane.xml");
 
             //random = new Random();
