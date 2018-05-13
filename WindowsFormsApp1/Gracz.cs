@@ -33,14 +33,14 @@ namespace WindowsFormsApp1
             poziom = 1;
         }
 
-        void Dobrze(int trudnosc = 0)
+        public void Dobrze(int trudnosc = 0)
         {
             LiczbaPunktow += trudnosc == 0 ? 1 : trudnosc;
             pomylka = false;
             Poziom++;
         }
 
-        void Zle()
+        public void Zle()
         {
             if (!pomylka)
             {

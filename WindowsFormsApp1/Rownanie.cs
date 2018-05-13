@@ -35,9 +35,10 @@ namespace WindowsFormsApp1
             trodnosc = dane.Length == 3 ? 0 : Convert.ToInt32(dane[3]);
         }
 
-        public int A => a;
-        public int B => b;
-        public Znak ZnakRownania => znak;
+        public int A { get; protected set; }
+        public int B { get; protected set; }
+        public Znak ZnakRownania { get; protected set; }
+        public int Trudnosc { get; protected set; }
 
         public int Oblicz()
         {

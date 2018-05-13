@@ -16,22 +16,22 @@ namespace WindowsFormsApp1 //Todo Zrobić obiektowo
 {
     public partial class Form1 : Form
     {
-        //private Random random;
-        private Rownanie rownanie;
+        private Random random;
+        private Rownanie aktualneRownanie;
         private Rownanie[] rownania;
+        private Gracz gracz;
 
         public Form1()
         {
             InitializeComponent();
+            
+            gracz = new Gracz();
+            random = new Random();
 
             WczytajRownania(@"../../dane.txt"); //Dane sa dwa foldery wyrzej
             //WczytajRownaniaXML("dane.xml");
 
-            //random = new Random();
-            rownanie = Rownanie.LosoweRownanie();
-            WyswietlRownanie();
-
-            poprawnoscLabel.Text = "";
+            PrzypiszNoweRowanie();
         }
 
         void WczytajRownania(string nazwaPliku)
@@ -91,7 +91,7 @@ namespace WindowsFormsApp1 //Todo Zrobić obiektowo
             }
         }
 
-        private void WyswietlRownanie()
+        private void WyswietlRownanie(Rownanie rownanie)
         {
             liczba1Label.Text = rownanie.A.ToString();
             liczba2Label.Text = rownanie.B.ToString();
@@ -111,19 +111,23 @@ namespace WindowsFormsApp1 //Todo Zrobić obiektowo
                 return false;
             }
 
-            return rownanie.Oblicz() == liczbaWpisana;
+            return aktualneRownanie.Oblicz() == liczbaWpisana;
         }
 
         private void Sprawdzenie()
         {
             if (CzyDobraOdpowiedz())
             {
+                gracz.Dobrze(aktualneRownanie.Trudnosc);
+
                 poprawnoscLabel.Text = "Dobrze";
                 pictureBox.Image = Properties.Resources.tick;
                 pictureBox.Visible = true;
             }
             else
             {
+                gracz.Zle();
+
                 poprawnoscLabel.Text = "Zle";
                 pictureBox.Image = Properties.Resources.cross;
                 pictureBox.Visible = true;
@@ -139,11 +143,22 @@ namespace WindowsFormsApp1 //Todo Zrobić obiektowo
             poprawnoscLabel.Text = "";
         }
 
+        void PrzypiszNoweRowanie() //ToDo Przypisane rowanie zalezne od poziomu gracza
+        { 
+            if (rownania.Length == 0) //Dane nie zostaly wczytane
+                aktualneRownanie = Rownanie.LosoweRownanie();
+            else
+            {
+                aktualneRownanie = rownania[random.Next(0, rownania.Length)];
+            }
+
+            WyczyscStareRownanie();
+            WyswietlRownanie(aktualneRownanie);
+        }
+
         private void button1_Click(object sender, EventArgs e)
         {
-            rownanie = Rownanie.LosoweRownanie();
-            WyswietlRownanie();
-            WyczyscStareRownanie();
+            PrzypiszNoweRowanie();
         }
 
         private void button2_Click(object sender, EventArgs e)
