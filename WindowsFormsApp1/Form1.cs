@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,7 +19,7 @@ namespace WindowsFormsApp1 //Todo Zrobić obiektowo
 {
     public partial class Form1 : Form
     {
-        private Random random;
+        //private Random random;
         private Rownanie rownanie;
         private Rownanie[] rownania;
 
@@ -28,7 +29,7 @@ namespace WindowsFormsApp1 //Todo Zrobić obiektowo
 
             //WczytajRownaniaXML("dane.xml");
 
-            random = new Random();
+            //random = new Random();
             rownanie = Rownanie.LosoweRownanie();
             WyswietlRownanie();
 
@@ -40,6 +41,25 @@ namespace WindowsFormsApp1 //Todo Zrobić obiektowo
             //    daneXML.Load("dane.xml");
             //    Console.WriteLine(daneXML.GetElementsByTagName("Rownanie").Count);
             //}
+        }
+
+        void WczytajRownania(string nazwaPliku)
+        {
+            try
+            {
+                string[] linie = File.ReadAllLines(nazwaPliku);
+                rownania = new Rownanie[linie.Length];
+
+                for (int i = 0; i < linie.Length; i++)
+                {
+                    string linia = linie[i];
+                    rownania[i] = new Rownanie(linia);
+                }
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Nie udalo sie wczytac rownan z pliku");
+            }
         }
 
         void WczytajRownaniaXML(string nazwaPliku)

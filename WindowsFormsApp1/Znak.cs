@@ -40,7 +40,7 @@ namespace WindowsFormsApp1
                     break;
 
                 default:
-                    throw new Exception("Zamiana z niewlasciwego znaku");
+                    throw new Exception("Niewlasciwy znak");
             }
         }
 
