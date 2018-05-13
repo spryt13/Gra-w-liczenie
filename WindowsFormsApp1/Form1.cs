@@ -9,7 +9,6 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 //ToDo Wczytywanie działań z pliku
-//ToDo Klasa Dzialanie
 //ToDo Działania mają mieć stopień trudności
 //ToDo Dynamiczne dobieranie równań do tego jak idzie graczowi
 //ToDO Sprawdzanie poprawnosci pliku
