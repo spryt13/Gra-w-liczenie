@@ -20,7 +20,7 @@ namespace WindowsFormsApp1
         }
 
         public int A => a;
-        public int B => B;
+        public int B => b;
         public Znak ZnakRownania => znak;
 
         public int Oblicz()

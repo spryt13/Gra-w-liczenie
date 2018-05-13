@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace WindowsFormsApp1
 {
-    class Znak
+    class Znak : IEquatable<Znak>
     {
         private enum Znaki
         {
@@ -62,6 +62,16 @@ namespace WindowsFormsApp1
             }
         }
 
+        public static bool operator==(Znak a, Znak b)
+        {
+            return a.Equals(b);
+        }
+
+        public static bool operator!=(Znak a, Znak b)
+        {
+            return !a.Equals(b);
+        }
+
         public static Znak LosowyZnak()
         {
             Random random = new Random();
@@ -87,6 +97,11 @@ namespace WindowsFormsApp1
         public static Znak Razy()
         {
             return new Znak(Znaki.Razy);
+        }
+
+        public bool Equals(Znak other)
+        {
+            return this.znak == other.znak;
         }
     }
 }

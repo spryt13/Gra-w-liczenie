@@ -19,44 +19,27 @@ namespace WindowsFormsApp1 //Todo Zrobić obiektowo
     public partial class Form1 : Form
     {
         private Random random;
+        private Rownanie rownanie;
+
         public Form1()
         {
             InitializeComponent();
 
             random = new Random();
-            UtworzLosoweRownanie();
-        }
-
-        int Policz(int a, Znak znak, int b)
-        {
-            if (znak == Znak.Plus())
-                return a + b;
-            if (znak == Znak.Minus())
-                return a - b;
-            if (znak == Znak.Podzielic())
-                return a / b;
-            if (znak == Znak.Razy())
-                return a * b;
-
-            return 0;
-        }
-
-        private void UtworzLosoweRownanie()
-        {
-            liczba1Label.Text = random.Next(1, 10).ToString();
-            liczba2Label.Text = random.Next(1, 10).ToString();
-
-            znakLabel.Text = Znak.LosowyZnak().ToString();
-
+            rownanie = Rownanie.LosoweRownanie();
+            WyswietlRownanie();
             poprawnoscLabel.Text = "";
+        }
+
+        private void WyswietlRownanie()
+        {
+            liczba1Label.Text = rownanie.A.ToString();
+            liczba2Label.Text = rownanie.B.ToString();
+            znakLabel.Text = rownanie.ZnakRownania.ToString();
         }
 
         private bool CzyDobraOdpowiedz()
         {
-            int a = Convert.ToInt32(liczba1Label.Text);
-            int b = Convert.ToInt32(liczba2Label.Text);
-
-            int wynikDzialania = Policz(a, new Znak(znakLabel.Text), b);
             int liczbaWpisana;
 
             try
@@ -68,7 +51,7 @@ namespace WindowsFormsApp1 //Todo Zrobić obiektowo
                 return false;
             }
 
-            return wynikDzialania == liczbaWpisana;
+            return rownanie.Oblicz() == liczbaWpisana;
         }
 
         private void Sprawdzenie()
@@ -93,11 +76,13 @@ namespace WindowsFormsApp1 //Todo Zrobić obiektowo
         {
             userInputTexBox.Text = "";
             pictureBox.Visible = false;
+            poprawnoscLabel.Text = "";
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            UtworzLosoweRownanie();
+            rownanie = Rownanie.LosoweRownanie();
+            WyswietlRownanie();
             WyczyscStareRownanie();
         }
 
