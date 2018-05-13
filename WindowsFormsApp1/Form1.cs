@@ -12,11 +12,10 @@ using System.Windows.Forms;
 
 namespace WindowsFormsApp1 //Todo Zrobić obiektowo
 {
-    public partial class Form1 : Form
+    public partial class Form1 : Form //Test
     {
         private Random random;
         private Rownanie aktualneRownanie;
-        //private Rownanie[] rownania;
         private Dictionary<int, List<Rownanie>> rownania; //Slownik <Poziom Trudnosci, Lista Rownan o danym poziomie trudnosci>
         private Gracz gracz;
 
