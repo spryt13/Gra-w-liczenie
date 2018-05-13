@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Xml;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -19,15 +20,57 @@ namespace WindowsFormsApp1 //Todo Zrobić obiektowo
     {
         private Random random;
         private Rownanie rownanie;
+        private Rownanie[] rownania;
 
         public Form1()
         {
             InitializeComponent();
 
+            //WczytajRownaniaXML("dane.xml");
+
             random = new Random();
             rownanie = Rownanie.LosoweRownanie();
             WyswietlRownanie();
+
             poprawnoscLabel.Text = "";
+
+            ////Test
+            //{
+            //    XmlDocument daneXML = new XmlDocument();
+            //    daneXML.Load("dane.xml");
+            //    Console.WriteLine(daneXML.GetElementsByTagName("Rownanie").Count);
+            //}
+        }
+
+        void WczytajRownaniaXML(string nazwaPliku)
+        {
+            try
+            {
+                XmlDocument daneXML = new XmlDocument();
+                daneXML.Load(nazwaPliku);
+
+                int liczbaRownan = daneXML.GetElementsByTagName("Rownanie").Count;
+                rownania = new Rownanie[liczbaRownan];
+                
+                for (int i=0; i<liczbaRownan; i++)
+                {
+                    int a = 0;
+                    if (!Int32.TryParse(daneXML.GetElementsByTagName("Rownanie").Item(i).ChildNodes.Item(0).Value, out a))
+                        throw new Exception();
+
+                    int b;
+                    if (!Int32.TryParse(daneXML.GetElementsByTagName("Rownanie").Item(i).ChildNodes.Item(2).Value, out b))
+                        throw new Exception();
+
+                    Znak znak = new Znak(daneXML.GetElementsByTagName("Rownanie").Item(i).ChildNodes.Item(1).Value);
+
+                    rownania[i] = new Rownanie(a, znak, b);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Nie udało się wczytać równań z bazy");
+            }
         }
 
         private void WyswietlRownanie()

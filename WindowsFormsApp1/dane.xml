@@ -6,4 +6,10 @@
     <Liczba>2</Liczba>
     <Trudnosc>1</Trudnosc>
   </Rownanie>
+  <Rownanie>
+    <Liczba>6</Liczba>
+    <Znak>*</Znak>
+    <Liczba>2</Liczba>
+    <Trudnosc>2</Trudnosc>
+  </Rownanie>
 </Table>
