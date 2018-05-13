@@ -17,7 +17,7 @@ namespace WindowsFormsApp1 //Todo Zrobić obiektowo
         private Random random;
         private Rownanie aktualneRownanie;
         //private Rownanie[] rownania;
-        private Dictionary<int, List<Rownanie>> rownania;
+        private Dictionary<int, List<Rownanie>> rownania; //Slownik <Poziom Trudnosci, Lista Rownan o danym poziomie trudnosci>
         private Gracz gracz;
 
         public Form1()
@@ -26,14 +26,8 @@ namespace WindowsFormsApp1 //Todo Zrobić obiektowo
             
             gracz = new Gracz();
             random = new Random();
-            rownania = new Dictionary<int, List<Rownanie>>();
-            rownania.Add(0, new List<Rownanie>());
-            rownania.Add(1, new List<Rownanie>());
-            rownania.Add(2, new List<Rownanie>());
-            rownania.Add(3, new List<Rownanie>());
-
+            
             WczytajRownania(@"../../dane.txt"); //Dane sa dwa foldery wyrzej
-            //WczytajRownaniaXML("dane.xml");
 
             poziomLabel.Text = gracz.Poziom.ToString();
             PrzypiszNoweRowanie();
@@ -41,6 +35,14 @@ namespace WindowsFormsApp1 //Todo Zrobić obiektowo
 
         void WczytajRownania(string nazwaPliku)
         {
+            rownania = new Dictionary<int, List<Rownanie>>
+            {
+                {0, new List<Rownanie>()},
+                {1, new List<Rownanie>()},
+                {2, new List<Rownanie>()},
+                {3, new List<Rownanie>()}
+            };
+
             try
             {
                 string[] linie = File.ReadAllLines(nazwaPliku);
@@ -58,44 +60,6 @@ namespace WindowsFormsApp1 //Todo Zrobić obiektowo
                 MessageBox.Show("Nie udalo sie wczytac rownan z pliku");
             }
         }
-
-        //void WczytajRownaniaXML(string nazwaPliku)
-        //{
-        //    ////Test
-        //    //{
-        //    //    XmlDocument daneXML = new XmlDocument();
-        //    //    daneXML.Load("dane.xml");
-        //    //    Console.WriteLine(daneXML.GetElementsByTagName("Rownanie").Count);
-        //    //}
-
-        //    try
-        //    {
-        //        XmlDocument daneXML = new XmlDocument();
-        //        daneXML.Load(nazwaPliku);
-
-        //        int liczbaRownan = daneXML.GetElementsByTagName("Rownanie").Count;
-        //        rownania = new Rownanie[liczbaRownan];
-                
-        //        for (int i=0; i<liczbaRownan; i++)
-        //        {
-        //            int a = 0;
-        //            if (!Int32.TryParse(daneXML.GetElementsByTagName("Rownanie").Item(i).ChildNodes.Item(0).Value, out a))
-        //                throw new Exception();
-
-        //            int b;
-        //            if (!Int32.TryParse(daneXML.GetElementsByTagName("Rownanie").Item(i).ChildNodes.Item(2).Value, out b))
-        //                throw new Exception();
-
-        //            Znak znak = new Znak(daneXML.GetElementsByTagName("Rownanie").Item(i).ChildNodes.Item(1).Value);
-
-        //            rownania[i] = new Rownanie(a, znak, b);
-        //        }
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        MessageBox.Show("Nie udało się wczytać równań z bazy");
-        //    }
-        //}
 
         private void WyswietlRownanie(Rownanie rownanie)
         {
@@ -174,7 +138,7 @@ namespace WindowsFormsApp1 //Todo Zrobić obiektowo
 
         private void button2_Click(object sender, EventArgs e)
         {
-            if (pictureBox.Visible == false)
+            if (pictureBox.Visible == false) //Jesli pictureBox jest widoczny to rownanie zostalo juz sprawdzone
                 Sprawdzenie();
         }
 
