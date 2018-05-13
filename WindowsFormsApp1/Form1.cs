@@ -10,15 +10,14 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-//ToDo Dynamiczne dobieranie równań do tego jak idzie graczowi
-
 namespace WindowsFormsApp1 //Todo Zrobić obiektowo
 {
     public partial class Form1 : Form
     {
         private Random random;
         private Rownanie aktualneRownanie;
-        private Rownanie[] rownania;
+        //private Rownanie[] rownania;
+        private Dictionary<int, List<Rownanie>> rownania;
         private Gracz gracz;
 
         public Form1()
@@ -27,10 +26,16 @@ namespace WindowsFormsApp1 //Todo Zrobić obiektowo
             
             gracz = new Gracz();
             random = new Random();
+            rownania = new Dictionary<int, List<Rownanie>>();
+            rownania.Add(0, new List<Rownanie>());
+            rownania.Add(1, new List<Rownanie>());
+            rownania.Add(2, new List<Rownanie>());
+            rownania.Add(3, new List<Rownanie>());
 
             WczytajRownania(@"../../dane.txt"); //Dane sa dwa foldery wyrzej
             //WczytajRownaniaXML("dane.xml");
 
+            poziomLabel.Text = gracz.Poziom.ToString();
             PrzypiszNoweRowanie();
         }
 
@@ -39,12 +44,13 @@ namespace WindowsFormsApp1 //Todo Zrobić obiektowo
             try
             {
                 string[] linie = File.ReadAllLines(nazwaPliku);
-                rownania = new Rownanie[linie.Length];
 
                 for (int i = 0; i < linie.Length; i++)
                 {
                     string linia = linie[i];
-                    rownania[i] = new Rownanie(linia);
+                    Rownanie rownanie = new Rownanie(linia);
+
+                    rownania[rownanie.Trudnosc].Add(rownanie);
                 }
             }
             catch (Exception)
@@ -53,43 +59,43 @@ namespace WindowsFormsApp1 //Todo Zrobić obiektowo
             }
         }
 
-        void WczytajRownaniaXML(string nazwaPliku)
-        {
-            ////Test
-            //{
-            //    XmlDocument daneXML = new XmlDocument();
-            //    daneXML.Load("dane.xml");
-            //    Console.WriteLine(daneXML.GetElementsByTagName("Rownanie").Count);
-            //}
+        //void WczytajRownaniaXML(string nazwaPliku)
+        //{
+        //    ////Test
+        //    //{
+        //    //    XmlDocument daneXML = new XmlDocument();
+        //    //    daneXML.Load("dane.xml");
+        //    //    Console.WriteLine(daneXML.GetElementsByTagName("Rownanie").Count);
+        //    //}
 
-            try
-            {
-                XmlDocument daneXML = new XmlDocument();
-                daneXML.Load(nazwaPliku);
+        //    try
+        //    {
+        //        XmlDocument daneXML = new XmlDocument();
+        //        daneXML.Load(nazwaPliku);
 
-                int liczbaRownan = daneXML.GetElementsByTagName("Rownanie").Count;
-                rownania = new Rownanie[liczbaRownan];
+        //        int liczbaRownan = daneXML.GetElementsByTagName("Rownanie").Count;
+        //        rownania = new Rownanie[liczbaRownan];
                 
-                for (int i=0; i<liczbaRownan; i++)
-                {
-                    int a = 0;
-                    if (!Int32.TryParse(daneXML.GetElementsByTagName("Rownanie").Item(i).ChildNodes.Item(0).Value, out a))
-                        throw new Exception();
+        //        for (int i=0; i<liczbaRownan; i++)
+        //        {
+        //            int a = 0;
+        //            if (!Int32.TryParse(daneXML.GetElementsByTagName("Rownanie").Item(i).ChildNodes.Item(0).Value, out a))
+        //                throw new Exception();
 
-                    int b;
-                    if (!Int32.TryParse(daneXML.GetElementsByTagName("Rownanie").Item(i).ChildNodes.Item(2).Value, out b))
-                        throw new Exception();
+        //            int b;
+        //            if (!Int32.TryParse(daneXML.GetElementsByTagName("Rownanie").Item(i).ChildNodes.Item(2).Value, out b))
+        //                throw new Exception();
 
-                    Znak znak = new Znak(daneXML.GetElementsByTagName("Rownanie").Item(i).ChildNodes.Item(1).Value);
+        //            Znak znak = new Znak(daneXML.GetElementsByTagName("Rownanie").Item(i).ChildNodes.Item(1).Value);
 
-                    rownania[i] = new Rownanie(a, znak, b);
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Nie udało się wczytać równań z bazy");
-            }
-        }
+        //            rownania[i] = new Rownanie(a, znak, b);
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        MessageBox.Show("Nie udało się wczytać równań z bazy");
+        //    }
+        //}
 
         private void WyswietlRownanie(Rownanie rownanie)
         {
@@ -133,6 +139,7 @@ namespace WindowsFormsApp1 //Todo Zrobić obiektowo
                 pictureBox.Visible = true;
             }
 
+            poziomLabel.Text = gracz.Poziom.ToString();
             pictureBox.Visible = true;
         }
 
@@ -143,14 +150,18 @@ namespace WindowsFormsApp1 //Todo Zrobić obiektowo
             poprawnoscLabel.Text = "";
         }
 
-        void PrzypiszNoweRowanie() //ToDo Przypisane rowanie zalezne od poziomu gracza
+        void PrzypiszNoweRowanie()
         { 
-            if (rownania.Length == 0) //Dane nie zostaly wczytane
-                aktualneRownanie = Rownanie.LosoweRownanie();
-            else
+            try
             {
-                aktualneRownanie = rownania[random.Next(0, rownania.Length)];
+                List<Rownanie> rownaniaOdpowiednegoPoziomu = rownania[gracz.Poziom];
+
+                aktualneRownanie = rownaniaOdpowiednegoPoziomu[random.Next(0, rownaniaOdpowiednegoPoziomu.Count)];
             }
+            catch (Exception)
+            {
+                aktualneRownanie = Rownanie.LosoweRownanie(); //Dane nie zostaly wczytane
+                }
 
             WyczyscStareRownanie();
             WyswietlRownanie(aktualneRownanie);

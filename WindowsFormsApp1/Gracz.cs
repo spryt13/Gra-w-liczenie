@@ -18,9 +18,17 @@ namespace WindowsFormsApp1
             protected set
             {
                 if (value < 1)
+                {
                     poziom = 1;
+                    return;
+                }
                 if (value > 3)
+                {
                     poziom = 3;
+                    return;
+                }
+
+                poziom = value;
             }
         }
 

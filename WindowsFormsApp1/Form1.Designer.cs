@@ -39,6 +39,7 @@
             this.poprawnoscLabel = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.pictureBox = new System.Windows.Forms.PictureBox();
+            this.poziomLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
             this.SuspendLayout();
             // 
@@ -145,11 +146,21 @@
             this.pictureBox.TabStop = false;
             this.pictureBox.Visible = false;
             // 
+            // poziomLabel
+            // 
+            this.poziomLabel.AutoSize = true;
+            this.poziomLabel.Location = new System.Drawing.Point(331, 22);
+            this.poziomLabel.Name = "poziomLabel";
+            this.poziomLabel.Size = new System.Drawing.Size(66, 13);
+            this.poziomLabel.TabIndex = 10;
+            this.poziomLabel.Text = "poziomLabel";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(409, 286);
+            this.Controls.Add(this.poziomLabel);
             this.Controls.Add(this.pictureBox);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.poprawnoscLabel);
@@ -184,6 +195,7 @@
         private System.Windows.Forms.Label poprawnoscLabel;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.PictureBox pictureBox;
+        private System.Windows.Forms.Label poziomLabel;
     }
 }
 
