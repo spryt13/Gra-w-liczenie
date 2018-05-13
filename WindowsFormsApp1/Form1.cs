@@ -10,10 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-//ToDo Wczytywanie działań z pliku
-//ToDo Działania mają mieć stopień trudności
 //ToDo Dynamiczne dobieranie równań do tego jak idzie graczowi
-//ToDO Sprawdzanie poprawnosci pliku
 
 namespace WindowsFormsApp1 //Todo Zrobić obiektowo
 {
@@ -35,13 +32,6 @@ namespace WindowsFormsApp1 //Todo Zrobić obiektowo
             WyswietlRownanie();
 
             poprawnoscLabel.Text = "";
-
-            ////Test
-            //{
-            //    XmlDocument daneXML = new XmlDocument();
-            //    daneXML.Load("dane.xml");
-            //    Console.WriteLine(daneXML.GetElementsByTagName("Rownanie").Count);
-            //}
         }
 
         void WczytajRownania(string nazwaPliku)
@@ -65,6 +55,13 @@ namespace WindowsFormsApp1 //Todo Zrobić obiektowo
 
         void WczytajRownaniaXML(string nazwaPliku)
         {
+            ////Test
+            //{
+            //    XmlDocument daneXML = new XmlDocument();
+            //    daneXML.Load("dane.xml");
+            //    Console.WriteLine(daneXML.GetElementsByTagName("Rownanie").Count);
+            //}
+
             try
             {
                 XmlDocument daneXML = new XmlDocument();

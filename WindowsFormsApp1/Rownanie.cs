@@ -27,32 +27,11 @@ namespace WindowsFormsApp1
             if (dane.Length > 4 || dane.Length<3)
                 throw new Exception("Bledna liczba danych w linii");
 
-            int a = 0;
-            if (!Int32.TryParse(dane[0], out a))
-                throw new Exception();
+            a = Convert.ToInt32(dane[0]);
+            znak = new Znak(dane[1]);
+            b = Convert.ToInt32(dane[2]);
 
-            Znak znak = new Znak(dane[1]);
-
-            int b;
-            if (!Int32.TryParse(dane[2], out b))
-                throw new Exception();
-
-            this.a = a;
-            this.znak = znak;
-            this.b = b;
-
-            if (dane.Length == 3)
-            { 
-                this.trodnosc = 0;
-            }
-            else
-            {
-                int trudnosc;
-                if (!Int32.TryParse(dane[3], out trudnosc))
-                    throw new Exception();
-
-                this.trodnosc = trudnosc;
-            }
+            trodnosc = dane.Length == 3 ? 0 : Convert.ToInt32(dane[3]);
         }
 
         public int A => a;
