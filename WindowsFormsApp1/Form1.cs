@@ -174,7 +174,8 @@ namespace WindowsFormsApp1 //Todo Zrobić obiektowo
 
         private void button2_Click(object sender, EventArgs e)
         {
-            Sprawdzenie();
+            if (pictureBox.Visible == false)
+                Sprawdzenie();
         }
 
         private void userInputTexBox_KeyDown(object sender, KeyEventArgs e)
