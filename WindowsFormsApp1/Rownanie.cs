@@ -21,6 +21,7 @@ namespace WindowsFormsApp1
             this.trodnosc = trodnosc;
         }
 
+        //Rownanie mozna wczytac zarowno z poziomem trudnosci jak i bez. W przypadku braku poziomu trudnosci jest on ustawiany na 0
         public Rownanie(string napis)
         {
             string[] dane = napis.Split(' ');
