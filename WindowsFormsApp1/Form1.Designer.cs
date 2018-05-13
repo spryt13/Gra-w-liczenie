@@ -160,6 +160,7 @@
             this.Controls.Add(this.liczba2Label);
             this.Controls.Add(this.liczba1Label);
             this.Controls.Add(this.losujDzialanieButton);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.KeyPreview = true;
             this.MaximizeBox = false;
