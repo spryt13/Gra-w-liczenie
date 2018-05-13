@@ -27,71 +27,18 @@ namespace WindowsFormsApp1 //Todo Zrobić obiektowo
             UtworzLosoweRownanie();
         }
 
-        enum Znak
-        {
-            Plus,
-            Minus,
-            Razy,
-            Podzielic
-        };
-
-        private string ZnakToString(Znak znak)
-        {
-            switch (znak)
-            {
-                case Znak.Plus:
-                    return "+";
-                case Znak.Minus:
-                    return "-";
-                case Znak.Razy:
-                    return "*";
-                case Znak.Podzielic:
-                    return "/";
-
-                default:
-                    return "";
-            }
-        }
-
-        private Znak StringToZnak(string znak)
-        {
-            switch (znak)
-            {
-                case "+":
-                    return Znak.Plus;
-                case "-":
-                    return Znak.Minus;
-                case "*":
-                    return Znak.Razy;
-                case "/":
-                    return Znak.Podzielic;
-
-                default:
-                    throw new Exception("Zamiana z niewlasciwego znaku");
-            }
-        }
-
-        private Znak LosowyZnak()
-        {
-            return (Znak)random.Next(0, 4);
-        }
-
         int Policz(int a, Znak znak, int b)
         {
-            switch (znak)
-            {
-                case Znak.Plus:
-                    return a + b;
-                case Znak.Minus:
-                    return a - b;
-                case Znak.Razy:
-                    return a * b;
-                case Znak.Podzielic:
-                    return a / b;
+            if (znak == Znak.Plus())
+                return a + b;
+            if (znak == Znak.Minus())
+                return a - b;
+            if (znak == Znak.Podzielic())
+                return a / b;
+            if (znak == Znak.Razy())
+                return a * b;
 
-                default:
-                    return 0;
-            }
+            return 0;
         }
 
         private void UtworzLosoweRownanie()
@@ -99,7 +46,7 @@ namespace WindowsFormsApp1 //Todo Zrobić obiektowo
             liczba1Label.Text = random.Next(1, 10).ToString();
             liczba2Label.Text = random.Next(1, 10).ToString();
 
-            znakLabel.Text = ZnakToString(LosowyZnak());
+            znakLabel.Text = Znak.LosowyZnak().ToString();
 
             poprawnoscLabel.Text = "";
         }
@@ -109,14 +56,14 @@ namespace WindowsFormsApp1 //Todo Zrobić obiektowo
             int a = Convert.ToInt32(liczba1Label.Text);
             int b = Convert.ToInt32(liczba2Label.Text);
 
-            int wynikDzialania = Policz(a, StringToZnak(znakLabel.Text), b);
+            int wynikDzialania = Policz(a, new Znak(znakLabel.Text), b);
             int liczbaWpisana;
 
             try
             {
                 liczbaWpisana = Convert.ToInt32(userInputTexBox.Text);
             }
-            catch (Exception exception)
+            catch (Exception)
             {
                 return false;
             }

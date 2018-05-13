@@ -69,22 +69,22 @@ namespace WindowsFormsApp1
             return new Znak((Znaki)random.Next(0, 4));
         }
 
-        public Znak Plus()
+        public static Znak Plus()
         {
             return new Znak(Znaki.Plus);
         }
 
-        public Znak Minus()
+        public static Znak Minus()
         {
             return new Znak(Znaki.Minus);
         }
 
-        public Znak Podzielic()
+        public static Znak Podzielic()
         {
             return new Znak(Znaki.Podzielic);
         }
 
-        public Znak Razy()
+        public static Znak Razy()
         {
             return new Znak(Znaki.Razy);
         }
