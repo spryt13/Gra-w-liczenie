@@ -12,7 +12,7 @@ using System.Windows.Forms;
 
 namespace WindowsFormsApp1 //Todo Zrobić obiektowo
 {
-    public partial class Form1 : Form //Test
+    public partial class Form1 : Form //Test ciekawe co sie stanie
     {
         private Random random;
         private Rownanie aktualneRownanie;
