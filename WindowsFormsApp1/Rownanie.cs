@@ -37,7 +37,7 @@ namespace WindowsFormsApp1
         public void LosujDzialanie(string[] dane)
         {
             int liczbaCyfr;
-            for(int cycle = 0; cycle <= 3; cycle++)
+            for(int cycle = 0; cycle < 3; cycle++)
             {
                 try
                 {
