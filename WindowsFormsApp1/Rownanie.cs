@@ -12,7 +12,7 @@ namespace WindowsFormsApp1
         private int b = 0;
         private Znak znak;
         private int trodnosc;
-        private Random random;
+        private static Random random = new Random();
 
         public Rownanie(int a, Znak znak, int b, int trodnosc = 0)
         {
@@ -36,22 +36,22 @@ namespace WindowsFormsApp1
 
         public void LosujDzialanie(string[] dane)
         {
-            int check;
-            for(int cycle = 0; cycle <= dane.Length - 1; cycle++)
+            int liczbaCyfr;
+            for(int cycle = 0; cycle <= 3; cycle++)
             {
                 try
                 {
-                    check = Convert.ToInt32(dane[cycle]);
-                        while(check > 0)
-                        {
-                            if(cycle == 0)
-                                a += random.Next(1, 10) * (10 ^ (check - 1));
-                            else
-                                b += random.Next(1, 10) * (10 ^ (check - 1));
-                            check--;
-                        }
+                    liczbaCyfr = Convert.ToInt32(dane[cycle]);
+                    while(liczbaCyfr > 0)
+                    {
+                        if(cycle == 0)
+                            a += random.Next(1, 10) * Potega(10, liczbaCyfr - 1);
+                        if(cycle == 2)
+                            b += random.Next(1, 10) * Potega(10, liczbaCyfr - 1);
+                        liczbaCyfr--;
+                    }
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
                     znak = new Znak(dane[1]);
                 }
@@ -111,6 +111,18 @@ namespace WindowsFormsApp1
             int b = random.Next(1, maksymalnaWielkoscLiczb);
 
             return new Rownanie(a, Znak.LosowyZnak(), b);
+        }
+
+        private static int Potega(int a, int potega)
+        {
+            int wynik = 1;
+
+            for (int i = 0; i < potega; i++)
+            {
+                wynik *= a;
+            }
+
+            return wynik;
         }
     }
 }
