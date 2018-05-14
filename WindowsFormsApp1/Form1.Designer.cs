@@ -40,6 +40,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.pictureBox = new System.Windows.Forms.PictureBox();
             this.poziomLabel = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
             this.SuspendLayout();
             // 
@@ -149,17 +150,28 @@
             // poziomLabel
             // 
             this.poziomLabel.AutoSize = true;
-            this.poziomLabel.Location = new System.Drawing.Point(331, 22);
+            this.poziomLabel.Location = new System.Drawing.Point(309, 22);
             this.poziomLabel.Name = "poziomLabel";
             this.poziomLabel.Size = new System.Drawing.Size(66, 13);
             this.poziomLabel.TabIndex = 10;
             this.poziomLabel.Text = "poziomLabel";
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(332, 261);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 11;
+            this.button1.Text = "Zamknij";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click_1);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(409, 286);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.poziomLabel);
             this.Controls.Add(this.pictureBox);
             this.Controls.Add(this.label1);
@@ -196,6 +208,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.PictureBox pictureBox;
         private System.Windows.Forms.Label poziomLabel;
+        private System.Windows.Forms.Button button1;
     }
 }
 

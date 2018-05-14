@@ -13,9 +13,12 @@ namespace WindowsFormsApp1
 
         public int Poziom
         {
-            get => poziom;
+            get
+            {
+                return poziom;
+            }
 
-            protected set
+            private set
             {
                 if (value < 1)
                 {
@@ -32,13 +35,13 @@ namespace WindowsFormsApp1
             }
         }
 
-        public int LiczbaPunktow { get; protected set; }
+        public int LiczbaPunktow { get; private set; }
 
         public Gracz()
         {
             LiczbaPunktow = 0;
             pomylka = false;
-            poziom = 1;
+            poziom = 0;
         }
 
         public void Dobrze(int trudnosc = 0)

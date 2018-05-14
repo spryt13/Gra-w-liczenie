@@ -26,7 +26,7 @@ namespace WindowsFormsApp1 //Todo Zrobić obiektowo
             gracz = new Gracz();
             random = new Random();
             
-            WczytajRownania(@"../../dane.txt"); //Dane sa dwa foldery wyrzej
+            WczytajRownania(@"../../dane.txt"); //Dane sa dwa foldery wyzej
 
             poziomLabel.Text = gracz.Poziom.ToString();
             PrzypiszNoweRowanie();
@@ -106,7 +106,7 @@ namespace WindowsFormsApp1 //Todo Zrobić obiektowo
             pictureBox.Visible = true;
         }
 
-        private void WyczyscStareRownanie()
+        private void Wyczysc()
         {
             userInputTexBox.Text = "";
             pictureBox.Visible = false;
@@ -124,18 +124,18 @@ namespace WindowsFormsApp1 //Todo Zrobić obiektowo
             catch (Exception)
             {
                 aktualneRownanie = Rownanie.LosoweRownanie(); //Dane nie zostaly wczytane
-                }
+            }
 
-            WyczyscStareRownanie();
+            Wyczysc();
             WyswietlRownanie(aktualneRownanie);
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void button1_Click(object sender, EventArgs e) //Nastepne dzialanie
         {
             PrzypiszNoweRowanie();
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void button2_Click(object sender, EventArgs e) //Sprawdzenie
         {
             if (pictureBox.Visible == false) //Jesli pictureBox jest widoczny to rownanie zostalo juz sprawdzone
                 Sprawdzenie();
@@ -143,8 +143,13 @@ namespace WindowsFormsApp1 //Todo Zrobić obiektowo
 
         private void userInputTexBox_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Enter)
+            if (e.KeyCode == Keys.Enter && pictureBox.Visible == false)
                 Sprawdzenie();
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            Close();
         }
     }
 }

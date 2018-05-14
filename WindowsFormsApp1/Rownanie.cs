@@ -8,10 +8,11 @@ namespace WindowsFormsApp1
 {
     class Rownanie
     {
-        private int a;
-        private int b;
+        private int a = 0;
+        private int b = 0;
         private Znak znak;
         private int trodnosc;
+        private Random random;
 
         public Rownanie(int a, Znak znak, int b, int trodnosc = 0)
         {
@@ -25,16 +26,38 @@ namespace WindowsFormsApp1
         public Rownanie(string napis)
         {
             string[] dane = napis.Split(' ');
-            if (dane.Length > 4 || dane.Length<3)
+            if (dane.Length > 4 || dane.Length < 3)
                 throw new Exception("Bledna liczba danych w linii");
 
-            a = Convert.ToInt32(dane[0]);
-            znak = new Znak(dane[1]);
-            b = Convert.ToInt32(dane[2]);
-
+            LosujDzialanie(dane);
+            
             trodnosc = dane.Length == 3 ? 0 : Convert.ToInt32(dane[3]);
         }
 
+        public void LosujDzialanie(string[] dane)
+        {
+            int check;
+            for(int cycle = 0; cycle <= dane.Length - 1; cycle++)
+            {
+                try
+                {
+                    check = Convert.ToInt32(dane[cycle]);
+                        while(check > 0)
+                        {
+                            if(cycle == 0)
+                                a += random.Next(1, 10) * (10 ^ (check - 1));
+                            else
+                                b += random.Next(1, 10) * (10 ^ (check - 1));
+                            check--;
+                        }
+                }
+                catch (Exception)
+                {
+                    znak = new Znak(dane[1]);
+                }
+            }
+
+        }
         public int A
         {
             get => a;
