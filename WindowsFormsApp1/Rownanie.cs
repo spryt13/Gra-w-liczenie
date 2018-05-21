@@ -35,6 +35,11 @@ namespace WindowsFormsApp1
             trodnosc = dane.Length == 3 ? 0 : Convert.ToInt32(dane[3]);
         }
 
+        public Rownanie(Szablon szablon)
+        {
+
+        }
+
         public int A
         {
             get => a;

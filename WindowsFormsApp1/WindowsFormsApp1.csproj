@@ -46,6 +46,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Gracz.cs" />
+    <Compile Include="Matma.cs" />
     <Compile Include="Rownanie.cs" />
     <Compile Include="Szablon.cs" />
     <Compile Include="Znak.cs" />
