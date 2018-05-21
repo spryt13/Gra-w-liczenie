@@ -26,7 +26,7 @@ namespace WindowsFormsApp1 //Todo Zrobić obiektowo
             gracz = new Gracz();
             random = new Random();
             
-            WczytajRownania(@"../../dane.txt"); //Dane sa dwa foldery wyzej
+            WczytajRownania(@"../../rownania.txt"); //Dane sa dwa foldery wyzej
 
             poziomLabel.Text = gracz.Poziom.ToString();
             PrzypiszNoweRowanie();

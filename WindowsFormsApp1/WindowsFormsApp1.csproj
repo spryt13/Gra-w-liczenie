@@ -91,7 +91,10 @@
     <None Include="Resources\tick.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="dane.txt" />
+    <None Include="rownania.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="szablony.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
