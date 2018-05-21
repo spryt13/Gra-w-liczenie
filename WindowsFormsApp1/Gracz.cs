@@ -20,14 +20,14 @@ namespace WindowsFormsApp1
 
             private set
             {
-                if (value < 0)
+                if (value < 1)
                 {
                     poziom = 1;
                     return;
                 }
-                if (value > 3)
+                if (value > 4)
                 {
-                    poziom = 3;
+                    poziom = 4;
                     return;
                 }
 
@@ -41,7 +41,7 @@ namespace WindowsFormsApp1
         {
             LiczbaPunktow = 0;
             pomylka = false;
-            poziom = 0;
+            poziom = 1;
         }
 
         public void Dobrze(int trudnosc = 0)

@@ -48,7 +48,8 @@ namespace WindowsFormsApp1 //Todo Zrobić obiektowo
                 {0, new List<string>()},
                 {1, new List<string>()},
                 {2, new List<string>()},
-                {3, new List<string>()}
+                {3, new List<string>()},
+                {4, new List<string>()}
             };
 
             try
