@@ -14,6 +14,8 @@ namespace WindowsFormsApp1 //Todo Zrobić obiektowo
 {
     public partial class Form1 : Form
     {
+        private bool PRACA_NA_SZABLONACH = true;
+
         private Random random;
         private Rownanie aktualneRownanie;
         private Dictionary<int, List<Rownanie>> rownania; //Slownik <Poziom Trudnosci, Lista Rownan o danym poziomie trudnosci>
@@ -27,10 +29,18 @@ namespace WindowsFormsApp1 //Todo Zrobić obiektowo
             gracz = new Gracz();
             random = new Random();
             
-            WczytajRownania(@"../../rownania.txt"); //Dane sa dwa foldery wyzej
+            ZaladujDane();
 
             poziomLabel.Text = gracz.Poziom.ToString();
             PrzypiszNoweRowanie();
+        }
+
+        void ZaladujDane()
+        {
+            if (PRACA_NA_SZABLONACH)
+                WczytajSzablony(@"../../szablony.txt");
+            else
+                WczytajRownania(@"../../rownania.txt"); //Dane sa dwa foldery wyzej
         }
 
         void WczytajSzablony(string nazwaPliku)
@@ -144,14 +154,23 @@ namespace WindowsFormsApp1 //Todo Zrobić obiektowo
         { 
             try
             {
-                List<Rownanie> rownaniaOdpowiednegoPoziomu = rownania[gracz.Poziom];
+                if (PRACA_NA_SZABLONACH)
+                {
+                    List<Szablon> szablonyOdpowiedniegoPoziomu = szablony[gracz.Poziom];
 
-                aktualneRownanie = rownaniaOdpowiednegoPoziomu[random.Next(0, rownaniaOdpowiednegoPoziomu.Count)];
-            }
-            catch (Exception)
-            {
-                aktualneRownanie = Rownanie.LosoweRownanie(); //Dane nie zostaly wczytane
+                    aktualneRownanie = new Rownanie(szablonyOdpowiedniegoPoziomu[random.Next(0, szablonyOdpowiedniegoPoziomu.Count)]);
                 }
+                else
+                {
+                    List<Rownanie> rownaniaOdpowiednegoPoziomu = rownania[gracz.Poziom];
+
+                    aktualneRownanie = rownaniaOdpowiednegoPoziomu[random.Next(0, rownaniaOdpowiednegoPoziomu.Count)];
+                }
+            }
+            catch (KeyNotFoundException) //Dane nie zostaly wczytane
+            {
+                aktualneRownanie = Rownanie.LosoweRownanie();
+            }
 
             Wyczysc();
             WyswietlRownanie(aktualneRownanie);
