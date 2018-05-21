@@ -20,7 +20,7 @@ namespace WindowsFormsApp1
 
             private set
             {
-                if (value < 1)
+                if (value < 0)
                 {
                     poziom = 1;
                     return;

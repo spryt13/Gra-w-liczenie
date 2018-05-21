@@ -17,6 +17,7 @@ namespace WindowsFormsApp1 //Todo Zrobić obiektowo
         private Random random;
         private Rownanie aktualneRownanie;
         private Dictionary<int, List<Rownanie>> rownania; //Slownik <Poziom Trudnosci, Lista Rownan o danym poziomie trudnosci>
+        private Dictionary<int, List<string>> templates;
         private Gracz gracz;
 
         public Form1()
@@ -34,12 +35,20 @@ namespace WindowsFormsApp1 //Todo Zrobić obiektowo
 
         void WczytajRownania(string nazwaPliku)
         {
-            rownania = new Dictionary<int, List<Rownanie>>
+            /*rownania = new Dictionary<int, List<Rownanie>>
             {
                 {0, new List<Rownanie>()},
                 {1, new List<Rownanie>()},
                 {2, new List<Rownanie>()},
                 {3, new List<Rownanie>()}
+            };*/
+
+            templates = new Dictionary<int, List<string>>
+            {
+                {0, new List<string>()},
+                {1, new List<string>()},
+                {2, new List<string>()},
+                {3, new List<string>()}
             };
 
             try
@@ -49,9 +58,11 @@ namespace WindowsFormsApp1 //Todo Zrobić obiektowo
                 for (int i = 0; i < linie.Length; i++)
                 {
                     string linia = linie[i];
-                    Rownanie rownanie = new Rownanie(linia);
+                    /*Rownanie rownanie = new Rownanie(linia);
 
-                    rownania[rownanie.Trudnosc].Add(rownanie);
+                    rownania[rownanie.Trudnosc].Add(rownanie);*/
+
+                    templates[Convert.ToInt32(linia[linia.Length-1])].Add(linia);
                 }
             }
             catch (Exception)
@@ -117,9 +128,13 @@ namespace WindowsFormsApp1 //Todo Zrobić obiektowo
         { 
             try
             {
-                List<Rownanie> rownaniaOdpowiednegoPoziomu = rownania[gracz.Poziom];
+                /*List<Rownanie> rownaniaOdpowiednegoPoziomu = rownania[gracz.Poziom];
 
-                aktualneRownanie = rownaniaOdpowiednegoPoziomu[random.Next(0, rownaniaOdpowiednegoPoziomu.Count)];
+                aktualneRownanie = rownaniaOdpowiednegoPoziomu[random.Next(0, rownaniaOdpowiednegoPoziomu.Count)];*/
+
+                List<string> wzory = templates[gracz.Poziom];
+
+                aktualneRownanie = new Rownanie(wzory[random.Next(0,wzory.Count)]);
             }
             catch (Exception)
             {
@@ -132,7 +147,8 @@ namespace WindowsFormsApp1 //Todo Zrobić obiektowo
 
         private void button1_Click(object sender, EventArgs e) //Nastepne dzialanie
         {
-            PrzypiszNoweRowanie();
+            if (pictureBox.Visible == true)
+                PrzypiszNoweRowanie();
         }
 
         private void button2_Click(object sender, EventArgs e) //Sprawdzenie
