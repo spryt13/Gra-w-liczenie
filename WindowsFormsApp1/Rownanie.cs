@@ -37,7 +37,11 @@ namespace WindowsFormsApp1
 
         public Rownanie(Szablon szablon)
         {
+            a = Matma.LiczbaNCyfrowa(szablon.LiczbaCyfrA);
+            Znak = szablon.Znak;
+            b = Matma.LiczbaNCyfrowa(szablon.LiczbaCyfrB);
 
+            trodnosc = szablon.Trodnosc;
         }
 
         public int A
@@ -52,7 +56,7 @@ namespace WindowsFormsApp1
             protected set => b = value;
         }
 
-        public Znak ZnakRownania
+        public Znak Znak
         {
             get => znak;
             protected set => znak = value;

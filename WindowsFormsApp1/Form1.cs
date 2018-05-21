@@ -51,7 +51,7 @@ namespace WindowsFormsApp1 //Todo Zrobić obiektowo
                     string linia = linie[i];
                     Rownanie rownanie = new Rownanie(linia);
 
-                    rownania[rownanie.Trudnosc].Add(rownanie);
+                    rownania[rownanie.Trodnosc].Add(rownanie);
                 }
             }
             catch (Exception)
@@ -64,7 +64,7 @@ namespace WindowsFormsApp1 //Todo Zrobić obiektowo
         {
             liczba1Label.Text = rownanie.A.ToString();
             liczba2Label.Text = rownanie.B.ToString();
-            znakLabel.Text = rownanie.ZnakRownania.ToString();
+            znakLabel.Text = rownanie.Znak.ToString();
         }
 
         private bool CzyDobraOdpowiedz()
@@ -87,7 +87,7 @@ namespace WindowsFormsApp1 //Todo Zrobić obiektowo
         {
             if (CzyDobraOdpowiedz())
             {
-                gracz.Dobrze(aktualneRownanie.Trudnosc);
+                gracz.Dobrze(aktualneRownanie.Trodnosc);
 
                 poprawnoscLabel.Text = "Dobrze";
                 pictureBox.Image = Properties.Resources.tick;
