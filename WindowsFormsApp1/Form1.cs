@@ -17,6 +17,7 @@ namespace WindowsFormsApp1 //Todo Zrobić obiektowo
         private Random random;
         private Rownanie aktualneRownanie;
         private Dictionary<int, List<Rownanie>> rownania; //Slownik <Poziom Trudnosci, Lista Rownan o danym poziomie trudnosci>
+        private Dictionary<int, List<Szablon>> szablony;
         private Gracz gracz;
 
         public Form1()
@@ -30,6 +31,33 @@ namespace WindowsFormsApp1 //Todo Zrobić obiektowo
 
             poziomLabel.Text = gracz.Poziom.ToString();
             PrzypiszNoweRowanie();
+        }
+
+        void WczytajSzablony(string nazwaPliku)
+        {
+            szablony = new Dictionary<int, List<Szablon>>
+            {
+                {0, new List<Szablon>()},
+                {1, new List<Szablon>()},
+                {2, new List<Szablon>()},
+                {3, new List<Szablon>()}
+            };
+
+            try
+            {
+                string[] linie = File.ReadAllLines(nazwaPliku);
+
+                foreach (string linia in linie)
+                {
+                    Szablon szablon = new Szablon(linia);
+
+                    szablony[szablon.Trodnosc].Add(szablon);
+                }
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Nie udalo sie wczytac szablonow z pliku");
+            }
         }
 
         void WczytajRownania(string nazwaPliku)
@@ -46,9 +74,8 @@ namespace WindowsFormsApp1 //Todo Zrobić obiektowo
             {
                 string[] linie = File.ReadAllLines(nazwaPliku);
 
-                for (int i = 0; i < linie.Length; i++)
+                foreach (string linia in linie)
                 {
-                    string linia = linie[i];
                     Rownanie rownanie = new Rownanie(linia);
 
                     rownania[rownanie.Trodnosc].Add(rownanie);
