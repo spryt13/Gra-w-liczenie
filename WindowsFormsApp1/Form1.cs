@@ -10,13 +10,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace WindowsFormsApp1 //Todo Zrobić obiektowo
+namespace WindowsFormsApp1
 {
-    public partial class Form1 : Form //Test ciekawe co sie stanie
+    public partial class Form1 : Form
     {
         private Random random;
         private Rownanie aktualneRownanie;
-        private Dictionary<int, List<Rownanie>> rownania; //Slownik <Poziom Trudnosci, Lista Rownan o danym poziomie trudnosci>
         private Dictionary<int, List<string>> templates;
         private Gracz gracz;
 
@@ -35,17 +34,9 @@ namespace WindowsFormsApp1 //Todo Zrobić obiektowo
 
         void WczytajRownania(string nazwaPliku)
         {
-            /*rownania = new Dictionary<int, List<Rownanie>>
-            {
-                {0, new List<Rownanie>()},
-                {1, new List<Rownanie>()},
-                {2, new List<Rownanie>()},
-                {3, new List<Rownanie>()}
-            };*/
-
             templates = new Dictionary<int, List<string>>
             {
-                {0, new List<string>()},
+                {0, new List<string>()}, //smietnik
                 {1, new List<string>()},
                 {2, new List<string>()},
                 {3, new List<string>()},
@@ -59,11 +50,7 @@ namespace WindowsFormsApp1 //Todo Zrobić obiektowo
                 for (int i = 0; i < linie.Length; i++)
                 {
                     string linia = linie[i];
-                    /*Rownanie rownanie = new Rownanie(linia);
-
-                    rownania[rownanie.Trudnosc].Add(rownanie);*/
-
-                    templates[Convert.ToInt32(linia[linia.Length-1])].Add(linia);
+                    templates[linia[linia.Length - 1] - '0'].Add(linia);
                 }
             }
             catch (Exception)

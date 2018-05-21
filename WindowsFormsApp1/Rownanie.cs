@@ -41,19 +41,28 @@ namespace WindowsFormsApp1
             {
                 try
                 {
-                    liczbaCyfr = Convert.ToInt32(dane[cycle]);
-                    while(liczbaCyfr > 0)
+                    if (cycle == 1)
+                        znak = new Znak(dane[1]);
+                    else
                     {
-                        if(cycle == 0)
-                            a += random.Next(1, 10) * Potega(10, liczbaCyfr - 1);
-                        if(cycle == 2)
-                            b += random.Next(1, 10) * Potega(10, liczbaCyfr - 1);
-                        liczbaCyfr--;
+                        liczbaCyfr = Convert.ToInt32(dane[cycle]);
+                        while (liczbaCyfr > 0)
+                        {
+                            if (cycle == 0)
+                                a += random.Next(1, 10) * Potega(10, liczbaCyfr - 1);
+                            if (cycle == 2)
+                                //if (znak != Znak.Podzielic())
+                                    b += random.Next(1, 10) * Potega(10, liczbaCyfr - 1);
+                                //else
+                                    //SzukanieDzielnej(a, liczbaCyfr);
+                                
+                            liczbaCyfr--;
+                        }
                     }
                 }
                 catch (Exception ex)
                 {
-                    znak = new Znak(dane[1]);
+                    throw new Exception("Blad losowania");
                 }
             }
 
@@ -123,6 +132,26 @@ namespace WindowsFormsApp1
             }
 
             return wynik;
+        }
+        private int SzukanieDzielnej(int a, int liczbaCyfr)
+        {
+            {
+                // najprosciej
+                b = a + 1;
+                while (a % b != 0)
+                    b = random.Next(1, a / 2) * Potega(10, liczbaCyfr - 1);
+                return b;
+                
+                /*a = ((a + 1) / 2) * 2;
+                List<int> dzielne = new List<int>();
+                for(int dzielna = 2; a != 1; dzielna = 2)
+                {
+                    if (a % dzielna == 0)
+                        dzielne.Add(dzielna);
+                }
+                b += random.Next(2, a / 10) * Potega(10, liczbaCyfr);
+                return b;*/
+            }
         }
     }
 }
