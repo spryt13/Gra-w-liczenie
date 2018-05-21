@@ -53,7 +53,7 @@ namespace WindowsFormsApp1
             protected set => znak = value;
         }
 
-        public int Trudnosc
+        public int Trodnosc
         {
             get => trodnosc;
             protected set
