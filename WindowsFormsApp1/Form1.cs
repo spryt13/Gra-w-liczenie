@@ -12,7 +12,7 @@ using System.Windows.Forms;
 
 namespace WindowsFormsApp1 //Todo Zrobić obiektowo
 {
-    public partial class Form1 : Form //Test
+    public partial class Form1 : Form
     {
         private Random random;
         private Rownanie aktualneRownanie;
@@ -26,7 +26,7 @@ namespace WindowsFormsApp1 //Todo Zrobić obiektowo
             gracz = new Gracz();
             random = new Random();
             
-            WczytajRownania(@"../../dane.txt"); //Dane sa dwa foldery wyrzej
+            WczytajRownania(@"../../dane.txt"); //Dane sa dwa foldery wyzej
 
             poziomLabel.Text = gracz.Poziom.ToString();
             PrzypiszNoweRowanie();
@@ -106,7 +106,7 @@ namespace WindowsFormsApp1 //Todo Zrobić obiektowo
             pictureBox.Visible = true;
         }
 
-        private void WyczyscStareRownanie()
+        private void Wyczysc()
         {
             userInputTexBox.Text = "";
             pictureBox.Visible = false;
@@ -126,7 +126,7 @@ namespace WindowsFormsApp1 //Todo Zrobić obiektowo
                 aktualneRownanie = Rownanie.LosoweRownanie(); //Dane nie zostaly wczytane
                 }
 
-            WyczyscStareRownanie();
+            Wyczysc();
             WyswietlRownanie(aktualneRownanie);
         }
 
@@ -143,7 +143,7 @@ namespace WindowsFormsApp1 //Todo Zrobić obiektowo
 
         private void userInputTexBox_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Enter)
+            if (e.KeyCode == Keys.Enter && pictureBox.Visible == false)
                 Sprawdzenie();
         }
     }
