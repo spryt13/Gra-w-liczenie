@@ -16,24 +16,9 @@ namespace WindowsFormsApp1
                 throw new ArgumentException("Liczba cyfr nie moze byc mniejsza niz 1");
 
             int dol = Potega(10, n - 1);
-            int gora = SameDziewiatki(n);
+            int gora = Potega(10, n);
 
-            return random.Next(dol, gora + 1);
-        }
-
-        private static int SameDziewiatki(int iloscDziewiatek)
-        {
-            if (iloscDziewiatek < 1)
-                throw new ArgumentException("Liczba dziewiatek nie moze byc mniejsza niz 1");
-
-            int wynik = 9;
-
-            for (int i = 1; i < iloscDziewiatek; i++)
-            {
-                wynik += 9 * Potega(10, i - 1);
-            }
-
-            return wynik;
+            return random.Next(dol, gora);
         }
 
         public static int Potega(int liczba, int potega)
