@@ -39,7 +39,13 @@ namespace WindowsFormsApp1
         {
             a = Matma.LiczbaNCyfrowa(szablon.LiczbaCyfrA);
             Znak = szablon.Znak;
-            b = Matma.LiczbaNCyfrowa(szablon.LiczbaCyfrB);
+
+            if (znak != Znak.Podzielic()) //Gdy znakiem rownania jest dzielenie trzeba zadbac by wynik byl calkowity
+                b = Matma.LiczbaNCyfrowa(szablon.LiczbaCyfrB);
+            else
+            {
+                
+            }
 
             trodnosc = szablon.Trodnosc;
         }

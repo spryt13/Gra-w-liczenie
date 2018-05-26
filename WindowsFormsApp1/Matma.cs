@@ -32,5 +32,25 @@ namespace WindowsFormsApp1
 
             return wynik;
         }
+
+        public static List<int> Dzielniki(int liczba)
+        {
+            List<int> dzielniki = new List<int>();
+
+            for (int i = 1; i <= liczba; i++)
+            {
+                if (liczba % i == 0)
+                    dzielniki.Add(i);
+            }
+
+            return dzielniki;
+        }
+
+        public static int LosowyDzielnik(int liczba)
+        {
+            List<int> dzielniki = Dzielniki(liczba);
+
+            return dzielniki[random.Next(0, dzielniki.Capacity)];
+        }
     }
 }
