@@ -40,8 +40,21 @@ namespace WindowsFormsApp1
             a = Matma.LiczbaNCyfrowa(szablon.LiczbaCyfrA);
             Znak = szablon.Znak;
             //Gdy dzialanie to dzielenie to druga liczba musi byc dzielnikiem pierwszej, by wynik wyszedl calkowity
-            b = znak != Znak.Podzielic() ? Matma.LiczbaNCyfrowa(szablon.LiczbaCyfrB) : Matma.LosowyDzielnik(a);
-
+            /*b = znak != Znak.Podzielic() ? Matma.LiczbaNCyfrowa(szablon.LiczbaCyfrB) :
+                {
+                while (a == 1)
+                    a = Matma.LiczbaNCyfrowa(szablon.LiczbaCyfrA);
+                b = Matma.LosowyDzielnik(a);
+                }*/
+            if (znak != Znak.Podzielic())
+                b = Matma.LiczbaNCyfrowa(szablon.LiczbaCyfrB);
+            else
+            {
+                while (a == 1)
+                    a = Matma.LiczbaNCyfrowa(szablon.LiczbaCyfrA);
+                b = Matma.LosowyDzielnik(ref a);
+            }
+            
             trodnosc = szablon.Trodnosc;
         }
 

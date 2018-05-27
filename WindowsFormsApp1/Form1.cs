@@ -77,7 +77,8 @@ namespace WindowsFormsApp1 //Todo Zrobić obiektowo
                 {0, new List<Rownanie>()},
                 {1, new List<Rownanie>()},
                 {2, new List<Rownanie>()},
-                {3, new List<Rownanie>()}
+                {3, new List<Rownanie>()},
+                {4, new List<Rownanie>()}
             };
 
             try

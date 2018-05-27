@@ -37,7 +37,7 @@ namespace WindowsFormsApp1
         {
             List<int> dzielniki = new List<int>();
 
-            for (int i = 1; i <= liczba; i++)
+            for (int i = 2; i <= liczba / 2 + 1; i++)
             {
                 if (liczba % i == 0)
                     dzielniki.Add(i);
@@ -46,17 +46,18 @@ namespace WindowsFormsApp1
             return dzielniki;
         }
 
-        public static int LosowyDzielnik(int liczba)
+        public static int LosowyDzielnik(ref int liczba)
         {
-            if (liczba == 1)
-                return 1;
-
             List<int> dzielniki = Dzielniki(liczba);
             
-            if (dzielniki.Count > 2) //Staramy sie uniknac dzielenia przez sama siebie
-                return dzielniki[random.Next(1, dzielniki.Count - 1)];
+            if (dzielniki.Count > 0)
+                return dzielniki[random.Next(0, dzielniki.Count-1)];
             else
-                return dzielniki[random.Next(1, dzielniki.Count - 1)];
+            {
+                liczba++;
+                dzielniki = Dzielniki(liczba);
+                return dzielniki[random.Next(0, dzielniki.Count-1)];
+            }
         }
     }
 }
