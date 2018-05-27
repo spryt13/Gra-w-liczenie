@@ -50,7 +50,7 @@ namespace WindowsFormsApp1
         {
             List<int> dzielniki = Dzielniki(liczba);
 
-            return dzielniki[random.Next(0, dzielniki.Capacity)];
+            return dzielniki[random.Next(0, dzielniki.Count)];
         }
     }
 }
