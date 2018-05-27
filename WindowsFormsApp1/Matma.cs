@@ -53,7 +53,10 @@ namespace WindowsFormsApp1
 
             List<int> dzielniki = Dzielniki(liczba);
             
-            return dzielniki[random.Next(1, dzielniki.Count)];
+            if (dzielniki.Count > 2) //Staramy sie uniknac dzielenia przez sama siebie
+                return dzielniki[random.Next(1, dzielniki.Count - 1)];
+            else
+                return dzielniki[random.Next(1, dzielniki.Count - 1)];
         }
     }
 }
