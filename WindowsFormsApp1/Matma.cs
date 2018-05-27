@@ -48,9 +48,12 @@ namespace WindowsFormsApp1
 
         public static int LosowyDzielnik(int liczba)
         {
-            List<int> dzielniki = Dzielniki(liczba);
+            if (liczba == 1)
+                return 1;
 
-            return dzielniki[random.Next(0, dzielniki.Count)];
+            List<int> dzielniki = Dzielniki(liczba);
+            
+            return dzielniki[random.Next(1, dzielniki.Count)];
         }
     }
 }
